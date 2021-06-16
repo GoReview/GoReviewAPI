@@ -2,7 +2,12 @@ defmodule GoreviewapiWeb.Router do
   use GoreviewapiWeb, :router
 
   pipeline :api do
+      plug CORSPlug,
+      origin: ["*"],
+      allow_credentials: true
+      
     plug :accepts, ["json"]
+    plug UUIDChecker
   end
 
   pipeline :auth do
