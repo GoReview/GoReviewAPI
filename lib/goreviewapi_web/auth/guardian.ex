@@ -31,10 +31,10 @@ defmodule GoreviewapiWeb.Auth.Guardian do
     do: {:error, Error.build(:unauthorized, "Access not allowed")}
 
   def authenticate(%{"email" => email, "password" => password}) do
-    with {:ok, %Usuario{password_hash: hash, id: usuario_id}} <-
+    with {:ok, %Usuario{password_hash: hash, id: usuario_id, group: grupo}} <-
            UsuarioGet.by_email(%{"email" => email}),
          true <- Pbkdf2.verify_pass(password, hash),
-         {:ok, token, _claims} <- encode_and_sign(usuario_id, %{}, ttl: {30, :minute}) do
+         {:ok, token, _claims} <- encode_and_sign(usuario_id, %{group: grupo}, ttl: {30, :minute}) do
       {:ok, token}
     else
       false -> {:error, Error.build(:unauthorized, "Please verify your credentials")}
