@@ -6,7 +6,6 @@ defmodule Goreviewapi.Repo.Migrations.CreateComentariosTable do
       add :texto, :string
       add :linha, :integer
 
-      add :revisor_id, references(:revisor, type: :binary_id)
       add :envio_id, references(:envios, type: :binary_id)
       timestamps()
     end
