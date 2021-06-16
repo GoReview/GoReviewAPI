@@ -1,4 +1,4 @@
-defmodule Goreviewapi.Repo.Migrations.CreateDesafioTable do
+defmodule Goreviewapi.Repo.Migrations.CreateDesafiosTable do
   use Ecto.Migration
 
   def change do
