@@ -4,8 +4,10 @@
 * CRUD usuarios
 * CRUD turmas
 
-* Rotas para usuarios (apresentou erro)
+16/6
 
-### precisa:
-* criar rotas para turmas
-* criar rotas autenticadas
+Rotas Autenticadas
+Para cadastro de usuarios
+Endpoints:
+
+
