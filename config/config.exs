@@ -13,6 +13,9 @@ config :goreviewapi,
 config :goreviewapi, Goreviewapi.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
+  
+config :cors_plug,
+  send_preflight_response?: true
 
 config :goreviewapi, GoreviewapiWeb.Auth.Guardian,
   issuer: "goreviewapi",
