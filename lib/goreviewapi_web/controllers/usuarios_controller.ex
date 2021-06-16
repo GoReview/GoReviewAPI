@@ -18,7 +18,7 @@ defmodule GoreviewapiWeb.UsuariosController do
 
   def delete(conn, _params) do
     with {:ok, logged_usuario} <- Guardian.current_usuario(conn),
-         {:ok, %Usuario{}} <- Goreviewapi.delete_usuario(logged_usuario) do
+         {:ok, %Usuario{}} <- Goreviewapi.delete_user(logged_usuario) do
       conn
       |> put_status(:no_content)
       |> text("")
@@ -28,14 +28,6 @@ defmodule GoreviewapiWeb.UsuariosController do
   def index(conn, _params) do
     with {:ok, logged_usuario} <- Guardian.current_usuario(conn),
          {:ok, %Usuario{} = usuario} <- Goreviewapi.get_user_by_id(logged_usuario) do
-      conn
-      |> put_status(:ok)
-      |> render("usuario.json", usuario: usuario)
-    end
-  end
-
-  def email(conn, %{"email" => email}) do
-    with {:ok, %Usuario{} = usuario} <- Goreviewapi.get_user_by_email(email) do
       conn
       |> put_status(:ok)
       |> render("usuario.json", usuario: usuario)

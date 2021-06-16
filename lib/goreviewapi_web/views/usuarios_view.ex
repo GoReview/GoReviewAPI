@@ -12,4 +12,9 @@ defmodule GoreviewapiWeb.UsuariosView do
   end
 
   def render("usuario.json", %{usuario: %Usuario{} = usuario}), do: %{usuario: usuario}
+
+  def render("usuario.json", %{usuario: [%Usuario{} | _rest] = usuario}),
+    do: %{usuario: usuario}
+
+  def render("sign_in.json", %{token: token}), do: %{token: token}
 end

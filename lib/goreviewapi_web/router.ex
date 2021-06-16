@@ -12,11 +12,15 @@ defmodule GoreviewapiWeb.Router do
   scope "/api", GoreviewapiWeb do
     pipe_through :api
 
+    get "/", WelcomeController, :index
     post "/usuarios", UsuariosController, :create
     post "/usuarios/signin", UsuariosController, :sign_in
+    ## PARA TESTE --> André
+    get "/usuarios/list", UsuariosController, :show_list
   end
 
   scope "/api", GoreviewapiWeb do
+    ## ROTAS AUTENTICADAS
     pipe_through [:api, :auth]
 
     get "/usuarios", UsuariosController, :index
