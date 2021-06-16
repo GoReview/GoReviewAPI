@@ -2,16 +2,17 @@ defmodule GoreviewapiWeb.UsuariosController do
   use GoreviewapiWeb, :controller
 
   alias Goreviewapi.Usuario
+  alias GoreviewapiWeb.Auth.Guardian
   alias GoreviewapiWeb.FallbackController
 
   action_fallback FallbackController
 
   def create(conn, params) do
-    with {:ok, %Usuario{} = usuario} <-
-           Goreviewapi.create_user(params) do
+    with {:ok, %Usuario{id: id} = usuario} <- Goreviewapi.create_user(params),
+         {:ok, token, _claims} <- Guardian.encode_and_sign(id, %{}, ttl: {30, :minute}) do
       conn
       |> put_status(:created)
-      |> render("create.json", usuario: usuario)
+      |> render("create.json", token: token, usuario: usuario)
     end
   end
 

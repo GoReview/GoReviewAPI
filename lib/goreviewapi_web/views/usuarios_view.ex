@@ -3,10 +3,11 @@ defmodule GoreviewapiWeb.UsuariosView do
 
   alias Goreviewapi.Usuario
 
-  def render("create.json", %{usuario: %Usuario{} = usuario}) do
+  def render("create.json", %{usuario: %Usuario{} = usuario, token: token}) do
     %{
       message: "User Created!",
-      usuario: usuario
+      usuario: usuario,
+      token: token
     }
   end
 

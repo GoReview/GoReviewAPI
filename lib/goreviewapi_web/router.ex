@@ -1,17 +1,27 @@
 defmodule GoreviewapiWeb.Router do
   use GoreviewapiWeb, :router
 
-  alias GoreviewapiWeb.Plugs.UUIDChecker
-
   pipeline :api do
     plug :accepts, ["json"]
-    plug UUIDChecker
+  end
+
+  pipeline :auth do
+    plug GoreviewapiWeb.Auth.Pipeline
   end
 
   scope "/api", GoreviewapiWeb do
     pipe_through :api
 
-    resources "/usuarios", UsuariosController
+    post "/usuarios", UsuariosController, :create
+    post "/usuarios/signin", UsuariosController, :sign_in
+  end
+
+  scope "/api", GoreviewapiWeb do
+    pipe_through [:api, :auth]
+
+    get "/usuarios", UsuariosController, :index
+    delete "/usuarios", UsuariosController, :delete
+    put "/usuarios", UsuariosController, :update
   end
 
   # Enables LiveDashboard only for development

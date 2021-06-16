@@ -14,6 +14,14 @@ config :goreviewapi, Goreviewapi.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
 
+config :goreviewapi, GoreviewapiWeb.Auth.Guardian,
+  issuer: "goreviewapi",
+  secret_key: "yRVGMXDyZkdOn8fbeKtg6+F7v3Lc7s5AwQXlWBCDo7pT4iY7Z3TcuACUeGO3M/ZO"
+
+config :goreviewapi, GoreviewapiWeb.Auth.Pipeline,
+  module: GoreviewapiWeb.Auth.Guardian,
+  error_handler: GoreviewapiWeb.Auth.ErrorHandler
+
 # Configures the endpoint
 config :goreviewapi, GoreviewapiWeb.Endpoint,
   url: [host: "localhost"],
