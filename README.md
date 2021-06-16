@@ -1,6 +1,7 @@
 # Goreviewapi
 
 [![Elixir CI](https://github.com/GoReview/GoReviewAPI/actions/workflows/elixir.yml/badge.svg)](https://github.com/GoReview/GoReviewAPI/actions/workflows/elixir.yml)
+
 Deploy automatizado
 
 Nossa API:
