@@ -1,7 +1,7 @@
 defmodule GoreviewapiWeb.Router do
   use GoreviewapiWeb, :router
 
-  alias MedirepoWeb.Plugs.UUIDChecker
+  alias GoreviewapiWeb.Plugs.UUIDChecker
 
   pipeline :api do
       plug CORSPlug,
