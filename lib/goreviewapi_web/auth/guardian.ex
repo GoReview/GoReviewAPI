@@ -34,7 +34,7 @@ defmodule GoreviewapiWeb.Auth.Guardian do
     with {:ok, %Usuario{password_hash: hash, id: usuario_id}} <-
            UsuarioGet.by_email(%{"email" => email}),
          true <- Pbkdf2.verify_pass(password, hash),
-         {:ok, token, _claims} <- encode_and_sign(usuario_id, ttl: {30, :minute}) do
+         {:ok, token, _claims} <- encode_and_sign(usuario_id, %{}, ttl: {30, :minute}) do
       {:ok, token}
     else
       false -> {:error, Error.build(:unauthorized, "Please verify your credentials")}
