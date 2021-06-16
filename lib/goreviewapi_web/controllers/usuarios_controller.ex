@@ -62,7 +62,7 @@ defmodule GoreviewapiWeb.UsuariosController do
     with {:ok, logged_usuario} <- Guardian.current_usuario(conn) do
       params = Map.put(params, "id", logged_usuario)
 
-      with {:ok, %Usuario{} = usuario} <- Goreviewapi.update_usuario(params) do
+      with {:ok, %Usuario{} = usuario} <- Goreviewapi.update_user(params) do
         conn
         |> put_status(:ok)
         |> render("usuario.json", usuario: usuario)
