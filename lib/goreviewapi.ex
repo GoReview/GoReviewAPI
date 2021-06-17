@@ -13,7 +13,10 @@ defmodule Goreviewapi do
 
   alias Goreviewapi.Turmas.Create, as: TurmaCreate
   alias Goreviewapi.Turmas.Update, as: TurmaUpdate
+  alias Goreviewapi.Turmas.Get, as: TurmaGet
 
   defdelegate create_turma(params), to: TurmaCreate, as: :call
   defdelegate update_turma(params), to: TurmaUpdate, as: :call
+  defdelegate get_turma_by_id(id), to: TurmaGet, as: :by_id
+  defdelegate get_turma, to: TurmaGet, as: :get_all
 end

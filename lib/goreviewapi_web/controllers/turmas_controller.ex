@@ -17,6 +17,18 @@ defmodule GoreviewapiWeb.TurmasController do
     end
   end
 
+  #def list_por_aluno...
+
+  def show_list(conn, _params) do
+    with  {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+    {:ok, turma} <- Goreviewapi.get_turma do
+      conn
+      |> put_status(:ok)
+      |> render("turma.json", turma: turma)
+    end
+
+  end
+
   def update(conn, params) do
     with  {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
           {:ok, %Turma{} = turma} <- Goreviewapi.update_turma(params)

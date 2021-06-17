@@ -40,6 +40,7 @@ defmodule GoreviewapiWeb.Router do
     #TURMAS
     post "/turmas", TurmasController, :create
     put "/turmas", TurmasController, :update
+    get "/turmas/list", TurmasController, :show_list
   end
 
   # Enables LiveDashboard only for development
