@@ -19,9 +19,11 @@ defmodule GoreviewapiWeb.Router do
   scope "/api", GoreviewapiWeb do
     pipe_through :api
 
+    #USUARIOS
     get "/", WelcomeController, :index
     post "/usuarios", UsuariosController, :create
     post "/usuarios/signin", UsuariosController, :sign_in
+
     ## PARA TESTE --> André
     get "/usuarios/list", UsuariosController, :show_list
   end
@@ -30,9 +32,16 @@ defmodule GoreviewapiWeb.Router do
     ## ROTAS AUTENTICADAS
     pipe_through [:api, :auth]
 
+    #USUARIOS
     get "/usuarios", UsuariosController, :index
     delete "/usuarios", UsuariosController, :delete
     put "/usuarios", UsuariosController, :update
+
+    #TURMAS
+    post "/turmas", TurmasController, :create
+    put "/turmas", TurmasController, :update
+    get "/turmas", TurmasController, :index
+    get "/turmas/list", TurmasController, :show_list
   end
 
   # Enables LiveDashboard only for development

@@ -10,4 +10,12 @@ defmodule GoreviewapiWeb.FallbackController do
     |> put_view(ErrorView)
     |> render("error.json", %{result: result})
   end
+
+  #Parece que é isso que acontece quando retona 401
+  def call(conn, {_, %{}}) do
+    conn
+    |> put_status(403)
+    |> put_view(ErrorView)
+    |> render("error.json", %{result: "Forrbiden"})
+  end
 end

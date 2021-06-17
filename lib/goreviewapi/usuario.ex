@@ -8,8 +8,8 @@ defmodule Goreviewapi.Usuario do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  @required_params [:email, :group, :password, :name]
-  @update_params [:email, :password, :name]
+  @required_params [:email, :group, :password, :name, :avatar_url]
+  @update_params [:email, :password, :name, :avatar_url]
 
   @derive {Jason.Encoder, only: [:id, :name]}
 
@@ -17,6 +17,7 @@ defmodule Goreviewapi.Usuario do
     field :name, :string
     field :email, :string
     field :group, :string
+    field :avatar_url, :string
     field :password, :string, virtual: true
     field :password_hash, :string
 
