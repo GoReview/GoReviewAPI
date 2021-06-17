@@ -34,7 +34,7 @@ defmodule Goreviewapi.Turma do
     struct
     |> cast(params, fields)
     |> validate_required(fields)
-    |> validate_length(:nome, min: 6)
+    |> validate_length(:name, min: 6)
     |> validate_length(:avatar_url, min: 6)
   end
 end
