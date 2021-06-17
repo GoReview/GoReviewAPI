@@ -2,20 +2,21 @@ defmodule Goreviewapi.Turma do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Goreviewapi.Usuario
+  alias Goreviewapi.{Desafio, Usuario}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
   @required_params [:name, :avatar_url]
 
-  @derive {Jason.Encoder, only: @required_params++[:id, :usuario]}
+  @derive {Jason.Encoder, only: @required_params++[:id, :usuario, :desafio]}
 
   schema "turmas" do
     field :name, :string
     field :avatar_url, :string
 
     many_to_many :usuario, Usuario, join_through: "usuarios_turmas"
+    has_many :desafio, Desafio
 
     timestamps()
   end

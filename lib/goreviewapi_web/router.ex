@@ -42,6 +42,10 @@ defmodule GoreviewapiWeb.Router do
     put "/turmas", TurmasController, :update
     get "/turmas", TurmasController, :index
     get "/turmas/list", TurmasController, :show_list
+
+    #DESAFIOS
+    post "/desafios", DesafiosController, :create
+    get "/desafios/list", DesafiosController, :create
   end
 
   # Enables LiveDashboard only for development

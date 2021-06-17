@@ -19,4 +19,16 @@ defmodule Goreviewapi do
   defdelegate update_turma(params), to: TurmaUpdate, as: :call
   defdelegate get_turma_by_id(id), to: TurmaGet, as: :by_id
   defdelegate get_turma, to: TurmaGet, as: :get_all
+
+  alias Goreviewapi.Desafios.Create, as: DesafioCreate
+  #alias Goreviewapi.Desafios.Update, as: DesafioUpdate
+  #alias Goreviewapi.Desafios.Delete, as: DesafioDelete
+  alias Goreviewapi.Desafios.Get, as: DesafioGet
+
+  defdelegate  create_desafio(params), to: DesafioCreate, as: :call
+  #
+  #
+  #
+  defdelegate get_desafio, to: DesafioGet, as: :get_all
+
 end
