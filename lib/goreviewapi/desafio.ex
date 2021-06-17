@@ -9,7 +9,7 @@ defmodule Goreviewapi.Desafio do
 
   @required_params [:titulo, :descricao, :data_envio, :data_revisao, :turma_id]
 
-  @derive {Jason.Encoder, only: @required_params} #REVER ISSO AQUI
+  @derive {Jason.Encoder, only: @required_params++[:envio]}
 
   schema "desafios" do
     field :titulo, :string
