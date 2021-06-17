@@ -40,6 +40,7 @@ defmodule GoreviewapiWeb.Router do
     #TURMAS
     post "/turmas", TurmasController, :create
     put "/turmas", TurmasController, :update
+    get "/turmas", TurmasController, :index
     get "/turmas/list", TurmasController, :show_list
   end
 

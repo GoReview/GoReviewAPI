@@ -19,6 +19,10 @@ defmodule GoreviewapiWeb.TurmasController do
 
   #def list_por_aluno...
 
+  #def index(conn, id) do...
+
+
+
   def show_list(conn, _params) do
     with  {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
     {:ok, turma} <- Goreviewapi.get_turma do
