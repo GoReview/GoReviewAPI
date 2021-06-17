@@ -9,9 +9,9 @@ defmodule Goreviewapi.Usuario do
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @required_params [:email, :group, :password, :name, :avatar_url]
-  @update_params [:email, :password, :name, :avatar_url]
+  @update_params [:email, :group, :password, :name, :avatar_url]
 
-  @derive {Jason.Encoder, only: [:id, :name]}
+  @derive {Jason.Encoder, only: [:id, :name, :group]}
 
   schema "usuarios" do
     field :name, :string

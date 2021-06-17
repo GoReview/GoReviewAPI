@@ -6,12 +6,18 @@ defmodule GoreviewapiWeb.TurmasView do
   def render("create.json", %{turma: %Turma{} = turma}) do
     %{
       message: "Turma Created!",
-      turma: turma,
+      turma: turma
+    }
+  end
+
+  def render("turma_update.json", %{turma: %Turma{} = turma}) do
+    %{
+      message: "Turma Updated!",
+      turma: turma
     }
   end
 
   def render("turma.json", %{turma: %Turma{} = turma}), do: %{turma: turma}
 
-  def render("turma.json", %{turma: [%Turma{} | _rest] = turma}),do: %{turmas: turma}
-
+  def render("turma.json", %{turma: [%Turma{} | _rest] = turma}), do: %{turmas: turma}
 end

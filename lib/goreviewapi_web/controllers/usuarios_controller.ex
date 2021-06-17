@@ -8,8 +8,9 @@ defmodule GoreviewapiWeb.UsuariosController do
   action_fallback FallbackController
 
   def create(conn, params) do
-    with {:ok, %Usuario{id: id} = usuario} <- Goreviewapi.create_user(params),
-         {:ok, token, _claims} <- Guardian.encode_and_sign(id, %{}, ttl: {30, :minute}) do
+    with {:ok, %Usuario{id: id, group: group} = usuario} <- Goreviewapi.create_user(params),
+         {:ok, token, _claims} <-
+           Guardian.encode_and_sign(id, %{group: group}, ttl: {30, :minute}) do
       conn
       |> put_status(:created)
       |> render("create.json", token: token, usuario: usuario)

@@ -4,7 +4,7 @@ defmodule GoreviewapiWeb.Router do
   alias GoreviewapiWeb.Plugs.UUIDChecker
 
   pipeline :api do
-      plug CORSPlug,
+    plug CORSPlug,
       origin: ["*"],
       allow_credentials: true
 
