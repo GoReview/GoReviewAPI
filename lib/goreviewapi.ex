@@ -21,14 +21,14 @@ defmodule Goreviewapi do
   defdelegate get_turma, to: TurmaGet, as: :get_all
 
   alias Goreviewapi.Desafios.Create, as: DesafioCreate
-  #alias Goreviewapi.Desafios.Update, as: DesafioUpdate
+  alias Goreviewapi.Desafios.Update, as: DesafioUpdate
   #alias Goreviewapi.Desafios.Delete, as: DesafioDelete
-  alias Goreviewapi.Desafios.Get, as: DesafioGet
+  #alias Goreviewapi.Desafios.Get, as: DesafioGet
 
-  defdelegate  create_desafio(params), to: DesafioCreate, as: :call
+  defdelegate create_desafio(params), to: DesafioCreate, as: :call
+  defdelegate update_desafio(params), to: DesafioUpdate, as: :call
   #
   #
-  #
-  defdelegate get_desafio, to: DesafioGet, as: :get_all
+  #defdelegate get_desafio, to: DesafioGet, as: :get_all
 
 end

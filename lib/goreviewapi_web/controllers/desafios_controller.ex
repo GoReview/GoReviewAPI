@@ -16,12 +16,12 @@ defmodule GoreviewapiWeb.DesafiosController do
     end
   end
 
-  def show_list(conn, _params) do
+  def update(conn, params) do
     with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
-         {:ok, desafio} <- Goreviewapi.get_desafio() do
+         {:ok, %Desafio{} = desafio} <- Goreviewapi.update_desafio(params) do
       conn
       |> put_status(:ok)
-      |> render("desafio.json", desafio: desafio)
+      |> render("desafio_update.json", desafio: desafio)
     end
   end
 end

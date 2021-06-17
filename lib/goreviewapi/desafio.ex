@@ -9,7 +9,7 @@ defmodule Goreviewapi.Desafio do
 
   @required_params [:titulo, :descricao, :data_envio, :data_revisao, :turma_id]
 
-  @derive {Jason.Encoder, only: @required_params++[:envio]}
+  @derive {Jason.Encoder, only: @required_params++[:id, :envio]}
 
   schema "desafios" do
     field :titulo, :string
@@ -35,7 +35,7 @@ defmodule Goreviewapi.Desafio do
 
   defp changes(struct, params, fields) do
     struct
-    |> cast(params, fields)
+    |> cast(params, fields) #tirar turma_id aqui?
     |> validate_required(fields)
     |> validate_length(:titulo, min: 6)
     |> validate_length(:descricao, min: 6)
