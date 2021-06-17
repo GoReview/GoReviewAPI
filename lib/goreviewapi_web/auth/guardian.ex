@@ -25,6 +25,12 @@ defmodule GoreviewapiWeb.Auth.Guardian do
     |> handle_usuario()
   end
 
+  def verify_claims(conn) do
+    conn
+    |> atual_token()
+    |> decode_and_verify(%{})
+  end
+
   defp handle_usuario({:ok, %{"sub" => logged_usuario}}), do: {:ok, logged_usuario}
 
   defp handle_usuario({:error, _result}),
