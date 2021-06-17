@@ -7,7 +7,7 @@ defmodule Goreviewapi.Desafio do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  @required_params [:titulo, :descricao, :data_envio, :data_revisao]
+  @required_params [:titulo, :descricao, :data_envio, :data_revisao, :turma_id]
 
   @derive {Jason.Encoder, only: @required_params} #REVER ISSO AQUI
 
@@ -38,7 +38,7 @@ defmodule Goreviewapi.Desafio do
     |> cast(params, fields)
     |> validate_required(fields)
     |> validate_length(:titulo, min: 6)
-    |> validate_number(:descricao, min: 6)
+    |> validate_length(:descricao, min: 6)
   end
 
 end
