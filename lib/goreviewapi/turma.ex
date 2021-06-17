@@ -9,7 +9,7 @@ defmodule Goreviewapi.Turma do
 
   @required_params [:name, :avatar_url]
 
-  @derive {Jason.Encoder, only: @required_params}
+  @derive {Jason.Encoder, only: @required_params++[:id]}
 
   schema "turmas" do
     field :name, :string

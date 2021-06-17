@@ -12,6 +12,8 @@ defmodule Goreviewapi do
   defdelegate update_user(params), to: UserUpdate, as: :call
 
   alias Goreviewapi.Turmas.Create, as: TurmaCreate
+  alias Goreviewapi.Turmas.Update, as: TurmaUpdate
 
   defdelegate create_turma(params), to: TurmaCreate, as: :call
+  defdelegate update_turma(params), to: TurmaUpdate, as: :call
 end
