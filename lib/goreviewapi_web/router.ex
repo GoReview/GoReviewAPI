@@ -42,6 +42,7 @@ defmodule GoreviewapiWeb.Router do
     put "/turmas", TurmasController, :update
     get "/turmas/list", TurmasController, :show_list
     get "/turmas/:id", TurmasController, :index
+    delete "/turmas/:id", TurmasController, :delete
 
     # DESAFIOS
     post "/desafios", DesafiosController, :create

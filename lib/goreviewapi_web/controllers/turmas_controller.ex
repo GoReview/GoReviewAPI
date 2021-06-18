@@ -16,7 +16,13 @@ defmodule GoreviewapiWeb.TurmasController do
     end
   end
 
-  # def list_por_aluno...
+  def delete(conn, %{"id" => id}) do
+    with {:ok, %Turma{}} <- Goreviewapi.delete_turma_by_id(id) do
+      conn
+      |> put_status(:no_content)
+      |> text("")
+    end
+  end
 
   def index(conn, %{"id" => id}) do
     with {:ok, %Turma{} = turma} <- Goreviewapi.get_turma_by_id(id) do

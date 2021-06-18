@@ -9,13 +9,13 @@ defmodule Goreviewapi.Turma do
 
   @required_params [:name, :avatar_url]
 
-  @derive {Jason.Encoder, only: @required_params++[:id, :usuario, :desafio]}
+  @derive {Jason.Encoder, only: @required_params ++ [:id, :usuario, :desafio]}
 
   schema "turmas" do
     field :name, :string
     field :avatar_url, :string
 
-    many_to_many :usuario, Usuario, join_through: "usuarios_turmas"
+    many_to_many :usuario, Usuario, join_through: "usuarios_turmas", on_delete: :delete_all
     has_many :desafio, Desafio
 
     timestamps()
