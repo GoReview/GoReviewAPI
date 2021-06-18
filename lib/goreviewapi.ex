@@ -33,11 +33,13 @@ defmodule Goreviewapi do
 
   alias Goreviewapi.Envios.Create, as: EnvioCreate
   alias Goreviewapi.Envios.Update, as: EnvioUpdate
+  alias Goreviewapi.Revisores.Update, as: RevisorUpdate
   #
   #
 
   defdelegate create_envio(params), to: EnvioCreate, as: :call
   defdelegate update_envio(params), to: EnvioUpdate, as: :call
+  defdelegate update_revisor(params), to: RevisorUpdate, as: :call
   #
   #
   #
