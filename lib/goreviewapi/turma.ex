@@ -2,7 +2,7 @@ defmodule Goreviewapi.Turma do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Goreviewapi.{Desafio, Usuario}
+  alias Goreviewapi.{Repo, Desafio, Usuario}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -31,8 +31,11 @@ defmodule Goreviewapi.Turma do
     |> changes(params, @required_params, alunos)
   end
 
+  def preload_assoc(struct), do: struct |> Repo.preload([:usuario, desafio: [envio: :usuario]])
+
   defp changes(struct, params, fields, alunos) do
     struct
+    |> preload_assoc()
     |> cast(params, fields)
     |> validate_required(fields)
     |> put_assoc(:usuario, alunos)
@@ -42,6 +45,7 @@ defmodule Goreviewapi.Turma do
 
   defp changes(struct, params, fields) do
     struct
+    |> preload_assoc()
     |> cast(params, fields)
     |> validate_required(fields)
     |> validate_length(:name, min: 6)

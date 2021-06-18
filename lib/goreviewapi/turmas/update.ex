@@ -13,7 +13,6 @@ defmodule Goreviewapi.Turmas.Update do
 
   defp do_update(alunos, turma, params) do
     turma
-    |> Repo.preload(:usuario)
     |> Turma.changeset(params, alunos)
     |> Repo.update()
     |> handle_update()

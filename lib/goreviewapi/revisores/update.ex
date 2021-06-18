@@ -8,8 +8,13 @@ defmodule Goreviewapi.Revisores.Update do
     end
   end
 
+<<<<<<< HEAD
   defp do_update(revisor, params) do
     revisor
+=======
+  defp do_update(desafio, params) do
+    desafio
+>>>>>>> c3c33e2018780ff0b97960ee8ce65aba43b2b555
     |> Revisor.changeset(params)
     |> Repo.update()
     |> handle_update()

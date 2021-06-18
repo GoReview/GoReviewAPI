@@ -2,7 +2,7 @@ defmodule Goreviewapi.Usuario do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Goreviewapi.Turma
+  alias Goreviewapi.{Envio, Turma}
 
   alias Ecto.Changeset
 
@@ -21,6 +21,7 @@ defmodule Goreviewapi.Usuario do
     field :password, :string, virtual: true
     field :password_hash, :string
 
+    has_many :envio, Envio
     many_to_many :turmas, Turma, join_through: "usuarios_turmas"
 
     timestamps()
