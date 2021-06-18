@@ -17,7 +17,7 @@ defmodule GoreviewapiWeb.EnviosController do
   end
 
   def update(conn, params) do
-    with {:ok, %Envio{} = envio} <- Goreviewapi.update_envio(params) do
+    with {:ok, %Envio{} = envio} <- Goreviewapi.update_envio(params) do #arrumar aqui, ta livre
       conn
       |> put_status(:ok)
       |> render("envio_update.json", envio: envio)
