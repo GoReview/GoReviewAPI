@@ -17,4 +17,5 @@ defmodule Goreviewapi.Error do
   def build_usuario_not_found_error, do: build(:not_found, "Usuario not found")
   def build_turma_not_found_error, do: build(:not_found, "Turma not found")
   def build_revisor_not_found_error, do: build(:not_found, "Revisor not found")
+  def build_comentario_not_found_error, do: build(:not_found, "Comentario not found")
 end
