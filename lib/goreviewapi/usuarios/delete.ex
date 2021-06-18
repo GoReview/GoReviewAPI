@@ -11,7 +11,7 @@ defmodule Goreviewapi.Usuarios.Delete do
   defp delete_usuario(param) do
     param
     |> Ecto.Changeset.change()
-    |> Ecto.Changeset.no_assoc_constraint(:turmas)
+    |> Ecto.Changeset.no_assoc_constraint(:envio)
     |> Repo.delete()
     |> handle_delete()
   end
