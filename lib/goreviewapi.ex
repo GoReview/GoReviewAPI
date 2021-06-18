@@ -31,4 +31,15 @@ defmodule Goreviewapi do
   #
   #defdelegate get_desafio, to: DesafioGet, as: :get_all
 
+  alias Goreviewapi.Envios.Create, as: EnvioCreate
+  alias Goreviewapi.Envios.Update, as: EnvioUpdate
+  #
+  #
+
+  defdelegate create_envio(params), to: EnvioCreate, as: :call
+  defdelegate update_envio(params), to: EnvioUpdate, as: :call
+  #
+  #
+  #
+
 end

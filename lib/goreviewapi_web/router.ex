@@ -46,6 +46,10 @@ defmodule GoreviewapiWeb.Router do
     #DESAFIOS
     post "/desafios", DesafiosController, :create
     put "/desafios", DesafiosController, :update
+
+    #ENVIOS
+    post "/envios", EnviosController, :create
+    put "/envios", EnviosController, :update
   end
 
   # Enables LiveDashboard only for development
