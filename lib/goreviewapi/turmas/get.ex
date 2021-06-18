@@ -16,14 +16,9 @@ defmodule Goreviewapi.Turmas.Get do
         select: [:id, :name]
       )
 
-    case Repo.all(query) |> load_assocs() do
+    case Repo.all(query) |> Turma.preload_assoc() do
       [] -> {:error, Error.build(:not_found, "Empty database")}
       turma -> {:ok, turma}
     end
-  end
-
-  defp load_assocs(repo) do
-    repo
-    |> Repo.preload([:usuario, desafio: [:envio]])
   end
 end
