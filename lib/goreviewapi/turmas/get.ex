@@ -4,7 +4,7 @@ defmodule Goreviewapi.Turmas.Get do
   alias Goreviewapi.{Error, Turma, Repo}
 
   def by_id(id) do
-    case Repo.get(Usuario, id) do
+    case Repo.get(Turma, id) |> Turma.preload_assoc() do
       nil -> {:error, Error.build_turma_not_found_error()}
       turma -> {:ok, turma}
     end
