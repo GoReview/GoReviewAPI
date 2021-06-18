@@ -19,7 +19,7 @@ defmodule GoreviewapiWeb.Router do
   scope "/api", GoreviewapiWeb do
     pipe_through :api
 
-    #USUARIOS
+    # USUARIOS
     get "/", WelcomeController, :index
     post "/usuarios", UsuariosController, :create
     post "/usuarios/signin", UsuariosController, :sign_in
@@ -32,22 +32,22 @@ defmodule GoreviewapiWeb.Router do
     ## ROTAS AUTENTICADAS
     pipe_through [:api, :auth]
 
-    #USUARIOS
+    # USUARIOS
     get "/usuarios", UsuariosController, :index
     delete "/usuarios", UsuariosController, :delete
     put "/usuarios", UsuariosController, :update
 
-    #TURMAS
+    # TURMAS
     post "/turmas", TurmasController, :create
     put "/turmas", TurmasController, :update
-    get "/turmas", TurmasController, :index
     get "/turmas/list", TurmasController, :show_list
+    get "/turmas/:id", TurmasController, :index
 
-    #DESAFIOS
+    # DESAFIOS
     post "/desafios", DesafiosController, :create
     put "/desafios", DesafiosController, :update
 
-    #ENVIOS
+    # ENVIOS
     post "/envios", EnviosController, :create
     put "/envios", EnviosController, :update
   end
