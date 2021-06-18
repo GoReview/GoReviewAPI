@@ -11,7 +11,6 @@ defmodule Goreviewapi.Turmas.Delete do
   defp delete_turma(param) do
     param
     |> Ecto.Changeset.change()
-    |> Ecto.Changeset.no_assoc_constraint(:usuario)
     |> Repo.delete()
     |> handle_delete()
   end

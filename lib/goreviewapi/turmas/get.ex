@@ -13,7 +13,7 @@ defmodule Goreviewapi.Turmas.Get do
   def get_all do
     query =
       from(turma in Turma,
-        select: [:id, :name]
+        select: [:id, :name, :avatar_url]
       )
 
     case Repo.all(query) |> Turma.preload_assoc() do
