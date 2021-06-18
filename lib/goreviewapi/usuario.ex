@@ -11,7 +11,7 @@ defmodule Goreviewapi.Usuario do
   @required_params [:email, :group, :password, :name, :avatar_url]
   @update_params [:email, :group, :password, :name, :avatar_url]
 
-  @derive {Jason.Encoder, only: [:id, :name, :group]}
+  @derive {Jason.Encoder, only: [:id, :name, :group, :avatar_url]}
 
   schema "usuarios" do
     field :name, :string
