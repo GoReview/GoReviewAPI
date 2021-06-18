@@ -15,6 +15,7 @@ https://documenter.getpostman.com/view/15643514/TzeWFT1o
 * CRUD turmas
 
 16/6
+
 Rotas Autenticadas
 Para cadastro de usuarios
 Endpoints na Documentação:
