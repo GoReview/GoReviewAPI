@@ -2,7 +2,7 @@ defmodule Goreviewapi.Revisor do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Goreviewapi.{Comentario, Usuario}
+  alias Goreviewapi.{Comentario, Usuario, Envio}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -16,6 +16,7 @@ defmodule Goreviewapi.Revisor do
 
     has_many :comentario, Comentario
     belongs_to :usuario, Usuario
+    belongs_to :envio, Envio
 
     timestamps()
   end
