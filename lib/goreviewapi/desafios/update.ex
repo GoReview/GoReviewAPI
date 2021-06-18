@@ -10,7 +10,6 @@ defmodule Goreviewapi.Desafios.Update do
 
   defp do_update(desafio, params) do
     desafio
-    |> Repo.preload(:envio)
     |> Desafio.changeset(params)
     |> Repo.update()
     |> handle_update()

@@ -2,7 +2,7 @@ defmodule Goreviewapi.Desafio do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Goreviewapi.{Turma, Envio}
+  alias Goreviewapi.{Repo, Turma, Envio}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -36,6 +36,7 @@ defmodule Goreviewapi.Desafio do
   defp changes(struct, params, fields) do
     struct
     |> cast(params, fields) #tirar turma_id aqui?
+    |> Repo.preload(:envio)
     |> validate_required(fields)
     |> validate_length(:titulo, min: 6)
     |> validate_length(:descricao, min: 6)
