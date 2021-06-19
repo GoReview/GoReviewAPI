@@ -56,6 +56,9 @@ defmodule GoreviewapiWeb.Router do
     # ENVIOS
     post "/envios", EnviosController, :create
     put "/envios", EnviosController, :update
+
+    # REVISORES
+    put "/revisores", RevisoresController, :update
   end
 
   # Enables LiveDashboard only for development
