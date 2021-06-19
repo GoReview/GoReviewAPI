@@ -15,7 +15,11 @@ defmodule Goreviewapi.Turma do
     field :name, :string
     field :avatar_url, :string
 
-    many_to_many :usuario, Usuario, join_through: "usuarios_turmas", on_delete: :delete_all
+    many_to_many :usuario, Usuario,
+      join_through: "usuarios_turmas",
+      on_delete: :delete_all,
+      on_replace: :delete
+
     has_many :desafio, Desafio
 
     timestamps()

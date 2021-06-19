@@ -25,7 +25,7 @@ defmodule Goreviewapi.Usuarios.Get do
   def get_all do
     query =
       from(usuario in Usuario,
-        select: [:id, :name]
+        select: [:id, :name, :group, :avatar_url]
       )
 
     case Repo.all(query) do
