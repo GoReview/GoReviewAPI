@@ -5,8 +5,11 @@ defmodule Goreviewapi.Usuario do
   alias Goreviewapi.{Envio, Turma}
 
   alias Ecto.Changeset
+  alias Ecto.Enum
 
   @primary_key {:id, :binary_id, autogenerate: true}
+
+  @usuario_group [:admin, :professor, :aluno]
 
   @required_params [:email, :group, :password, :name, :avatar_url]
   @update_params [:email, :group, :password, :name, :avatar_url]
@@ -16,7 +19,7 @@ defmodule Goreviewapi.Usuario do
   schema "usuarios" do
     field :name, :string
     field :email, :string
-    field :group, :string
+    field :group, Enum, values: @usuario_group
     field :avatar_url, :string
     field :password, :string, virtual: true
     field :password_hash, :string
@@ -42,7 +45,6 @@ defmodule Goreviewapi.Usuario do
     |> cast(params, fields)
     |> validate_required(fields)
     |> validate_length(:name, min: 2)
-    |> validate_length(:group, min: 2)
     |> validate_length(:password, min: 6)
     |> validate_format(:email, ~r/@/)
     |> unique_constraint([:email])
