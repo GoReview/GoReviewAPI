@@ -7,7 +7,7 @@ defmodule Goreviewapi.Revisor do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  @required_params []
+  @required_params [:usuario_id, :envio_id]
 
   @derive {Jason.Encoder, only: @required_params++[:nota]} #REVER ISSO AQUI
 
@@ -28,7 +28,7 @@ defmodule Goreviewapi.Revisor do
 
   def changeset(struct, params) do
     struct
-    |> changes(params, @required_params)
+    |> changes(params, @required_params++[:comentario_id])
   end
 
   defp changes(struct, params, fields) do
