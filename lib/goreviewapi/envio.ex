@@ -7,9 +7,9 @@ defmodule Goreviewapi.Envio do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  @required_params [:arquivo, :desafio_id, :usuario_id, :revisor_id]
+  @required_params [:arquivo, :desafio_id, :usuario_id]
 
-  @derive {Jason.Encoder, only: @required_params ++ [:id, :usuario]}
+  @derive {Jason.Encoder, only: @required_params ++ [:id, :usuario, :revisor]}
 
   schema "envios" do
     field :arquivo, :string
@@ -38,6 +38,6 @@ defmodule Goreviewapi.Envio do
     |> cast(params, fields)
     |> validate_required(fields)
     |> validate_length(:arquivo, min: 1)
-    |> validate_number(:dono_nota, greater_than: 0)
+    |> validate_number(:dono_nota, greater_than_or_equal_to: 0)
   end
 end
