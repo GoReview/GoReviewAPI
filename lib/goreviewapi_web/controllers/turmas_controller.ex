@@ -32,6 +32,14 @@ defmodule GoreviewapiWeb.TurmasController do
     end
   end
 
+  def show_user(conn, %{"id" => id}) do
+    with {:ok, [%Turma{} | _rest] = turma} <- Goreviewapi.get_turma_by_user(id) do
+      conn
+      |> put_status(:ok)
+      |> render("turma.json", turma: turma)
+    end
+  end
+
   def show_list(conn, _params) do
     with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
          {:ok, turma} <- Goreviewapi.get_turma() do

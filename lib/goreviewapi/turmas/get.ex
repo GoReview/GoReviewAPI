@@ -10,6 +10,23 @@ defmodule Goreviewapi.Turmas.Get do
     end
   end
 
+  def by_user(id) do
+    query =
+      from(turma in Turma,
+        join: usuario in assoc(turma, :usuario),
+        where: usuario.id == ^id,
+        preload: [usuario: usuario]
+      )
+
+    case Repo.all(query) |> Turma.preload_assoc() do
+      [] ->
+        {:error, Error.build(:not_found, "Usuario not associated to any Turma")}
+
+      turma ->
+        {:ok, turma}
+    end
+  end
+
   def get_all do
     query =
       from(turma in Turma,

@@ -1,7 +1,7 @@
 defmodule GoreviewapiWeb.TurmasView do
   use GoreviewapiWeb, :view
 
-  alias Goreviewapi.Turma
+  alias Goreviewapi.{Turma, Usuario}
 
   def render("create.json", %{turma: %Turma{} = turma}) do
     %{
