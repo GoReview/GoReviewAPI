@@ -8,6 +8,8 @@ defmodule Goreviewapi.Desafios.Update do
     end
   end
 
+  def call(%{}), do: {:error, Error.build(:bad_request, "ID required")}
+
   defp do_update(desafio, params) do
     desafio
     |> Desafio.changeset(params)

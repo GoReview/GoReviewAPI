@@ -9,7 +9,7 @@ defmodule Goreviewapi.Desafio do
 
   @required_params [:titulo, :descricao, :data_envio, :data_revisao, :turma_id]
 
-  @derive {Jason.Encoder, only: @required_params++[:id, :envio]}
+  @derive {Jason.Encoder, only: @required_params ++ [:id, :envio]}
 
   schema "desafios" do
     field :titulo, :string
@@ -30,16 +30,17 @@ defmodule Goreviewapi.Desafio do
 
   def changeset(struct, params) do
     struct
-    |> changes(params, @required_params)
+    |> changes(params, @required_params ++ [:id])
   end
+
+  def preload_assoc(struct), do: struct |> Repo.preload([:envio])
 
   defp changes(struct, params, fields) do
     struct
-    |> cast(params, fields) #tirar turma_id aqui?
-    |> Repo.preload(:envio)
+    |> preload_assoc()
+    |> cast(params, fields)
     |> validate_required(fields)
     |> validate_length(:titulo, min: 6)
     |> validate_length(:descricao, min: 6)
   end
-
 end

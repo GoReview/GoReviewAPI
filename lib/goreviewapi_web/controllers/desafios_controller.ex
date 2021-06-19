@@ -9,10 +9,43 @@ defmodule GoreviewapiWeb.DesafiosController do
 
   def create(conn, params) do
     with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
-    {:ok, %Desafio{} = desafio} <- Goreviewapi.create_desafio(params) do
-    conn
-    |> put_status(:created)
-    |> render("create.json", desafio: desafio)
+         {:ok, %Desafio{} = desafio} <- Goreviewapi.create_desafio(params) do
+      conn
+      |> put_status(:created)
+      |> render("create.json", desafio: desafio)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    with {:ok, %Desafio{}} <- Goreviewapi.delete_desafio_by_id(id) do
+      conn
+      |> put_status(:no_content)
+      |> text("")
+    end
+  end
+
+  def index(conn, %{"id" => id}) do
+    with {:ok, %Desafio{} = desafio} <- Goreviewapi.get_desafio_by_id(id) do
+      conn
+      |> put_status(:ok)
+      |> render("desafio.json", desafio: desafio)
+    end
+  end
+
+  def show_class(conn, %{"id" => id}) do
+    with {:ok, [%Desafio{} | _rest] = desafio} <- Goreviewapi.get_desafio_by_class(id) do
+      conn
+      |> put_status(:ok)
+      |> render("desafio.json", desafio: desafio)
+    end
+  end
+
+  def show_list(conn, _params) do
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+         {:ok, desafio} <- Goreviewapi.get_desafio() do
+      conn
+      |> put_status(:ok)
+      |> render("desafio.json", desafio: desafio)
     end
   end
 
