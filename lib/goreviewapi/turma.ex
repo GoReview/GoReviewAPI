@@ -31,7 +31,7 @@ defmodule Goreviewapi.Turma do
     |> changes(params, @required_params, alunos)
   end
 
-  def preload_assoc(struct), do: struct |> Repo.preload([:usuario, desafio: [envio: :usuario]])
+  def preload_assoc(struct), do: struct |> Repo.preload([:usuario, desafio: [envio: [:usuario, :revisor]]])
 
   defp changes(struct, params, fields, alunos) do
     struct

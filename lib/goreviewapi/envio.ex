@@ -2,14 +2,14 @@ defmodule Goreviewapi.Envio do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Goreviewapi.{Repo ,Usuario, Desafio}
+  alias Goreviewapi.{Repo ,Usuario, Desafio, Revisor}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  @required_params [:arquivo, :desafio_id, :usuario_id]
+  @required_params [:arquivo, :desafio_id, :usuario_id, :revisor_id]
 
-  @derive {Jason.Encoder, only: @required_params++[:id, :usuario]}
+  @derive {Jason.Encoder, only: @required_params++[:id, :usuario, :revisor]}
 
   schema "envios" do
     field :arquivo, :string
@@ -17,6 +17,7 @@ defmodule Goreviewapi.Envio do
 
     belongs_to :usuario, Usuario
     belongs_to :desafio, Desafio
+    has_many :revisor, Revisor
 
     timestamps()
   end
@@ -33,7 +34,7 @@ defmodule Goreviewapi.Envio do
 
   defp changes(struct, params, fields) do
     struct
-    |> Repo.preload(:usuario)
+    |> Repo.preload([:usuario, :revisor])
     |> cast(params, fields)
     |> validate_required(fields)
     |> validate_length(:arquivo, min: 1)
