@@ -9,7 +9,7 @@ defmodule Goreviewapi.Revisor do
 
   @required_params [:usuario_id, :envio_id]
 
-  @derive {Jason.Encoder, only: @required_params++[:nota]} #REVER ISSO AQUI
+  @derive {Jason.Encoder, only: @required_params++[:nota]}
 
   schema "revisores" do
     field :nota, :integer
