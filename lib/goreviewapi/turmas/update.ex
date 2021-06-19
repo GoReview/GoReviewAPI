@@ -25,7 +25,7 @@ defmodule Goreviewapi.Turmas.Update do
 
   # nesse caso seria um array de ids
   defp fetch_alunos(%{"alunos" => alunos_ids}) do
-    query = from aluno in Usuario, where: aluno.id in ^alunos_ids and aluno.group == "aluno"
+    query = from aluno in Usuario, where: aluno.id in ^alunos_ids and aluno.group == :aluno
 
     query
     |> Repo.all()
