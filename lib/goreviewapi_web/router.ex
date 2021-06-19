@@ -48,6 +48,10 @@ defmodule GoreviewapiWeb.Router do
     # DESAFIOS
     post "/desafios", DesafiosController, :create
     put "/desafios", DesafiosController, :update
+    get "/desafios/list", DesafiosController, :show_list
+    get "/desafios/class/:id", DesafiosController, :show_class
+    get "/desafios/:id", DesafiosController, :index
+    delete "/desafios/:id", DesafiosController, :delete
 
     # ENVIOS
     post "/envios", EnviosController, :create

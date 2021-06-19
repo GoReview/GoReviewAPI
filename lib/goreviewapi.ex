@@ -25,14 +25,15 @@ defmodule Goreviewapi do
 
   alias Goreviewapi.Desafios.Create, as: DesafioCreate
   alias Goreviewapi.Desafios.Update, as: DesafioUpdate
-  # alias Goreviewapi.Desafios.Delete, as: DesafioDelete
-  # alias Goreviewapi.Desafios.Get, as: DesafioGet
+  alias Goreviewapi.Desafios.Delete, as: DesafioDelete
+  alias Goreviewapi.Desafios.Get, as: DesafioGet
 
   defdelegate create_desafio(params), to: DesafioCreate, as: :call
   defdelegate update_desafio(params), to: DesafioUpdate, as: :call
-  #
-  #
-  # defdelegate get_desafio, to: DesafioGet, as: :get_all
+  defdelegate get_desafio_by_id(id), to: DesafioGet, as: :by_id
+  defdelegate delete_desafio_by_id(id), to: DesafioDelete, as: :call
+  defdelegate get_desafio_by_class(id), to: DesafioGet, as: :by_class
+  defdelegate get_desafio, to: DesafioGet, as: :get_all
 
   alias Goreviewapi.Envios.Create, as: EnvioCreate
   alias Goreviewapi.Envios.Update, as: EnvioUpdate
