@@ -22,6 +22,7 @@ defmodule GoreviewapiWeb.Router do
     # USUARIOS
     get "/", WelcomeController, :index
     post "/usuarios", UsuariosController, :create
+    post "/usuarios/reset", UsuariosController, :reset
     post "/usuarios/signin", UsuariosController, :sign_in
 
     ## PARA TESTE --> André
