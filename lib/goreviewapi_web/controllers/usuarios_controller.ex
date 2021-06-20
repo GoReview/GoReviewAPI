@@ -1,16 +1,19 @@
 defmodule GoreviewapiWeb.UsuariosController do
   use GoreviewapiWeb, :controller
 
-  alias Goreviewapi.Usuario
+  alias Goreviewapi.{Email, Usuario}
   alias GoreviewapiWeb.Auth.Guardian
   alias GoreviewapiWeb.FallbackController
 
   action_fallback FallbackController
 
   def create(conn, params) do
-    with {:ok, %Usuario{id: id, group: group} = usuario} <- Goreviewapi.create_user(params),
+    with {:ok, %Usuario{id: id, name: name, group: group, email: email} = usuario} <-
+           Goreviewapi.create_user(params),
          {:ok, token, _claims} <-
            Guardian.encode_and_sign(id, %{group: group}, ttl: {30, :minute}) do
+      Email.send_welcome_email(name, email, id)
+
       conn
       |> put_status(:created)
       |> render("create.json", token: token, usuario: usuario)
@@ -60,6 +63,16 @@ defmodule GoreviewapiWeb.UsuariosController do
         |> put_status(:ok)
         |> render("usuario.json", usuario: usuario)
       end
+    end
+  end
+
+  def reset(conn, %{"email" => email} = params) do
+    with {:ok, %Usuario{id: id, name: name, email: email}} <-
+           Goreviewapi.get_user_by_email(params),
+         {:ok, _usuario} <- Goreviewapi.reset_password(id, name, email) do
+      conn
+      |> put_status(:ok)
+      |> render("senha.json", email: email)
     end
   end
 end

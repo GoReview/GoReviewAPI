@@ -11,6 +11,13 @@ defmodule GoreviewapiWeb.UsuariosView do
     }
   end
 
+  def render("senha.json", %{email: email}) do
+    %{
+      message: "A new password was sent!",
+      email: email
+    }
+  end
+
   def render("usuario.json", %{usuario: %Usuario{} = usuario}), do: %{usuario: usuario}
 
   def render("usuario.json", %{usuario: [%Usuario{} | _rest] = usuario}),
