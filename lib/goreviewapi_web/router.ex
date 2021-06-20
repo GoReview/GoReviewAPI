@@ -24,8 +24,6 @@ defmodule GoreviewapiWeb.Router do
     post "/usuarios", UsuariosController, :create
     post "/usuarios/reset", UsuariosController, :reset
     post "/usuarios/signin", UsuariosController, :sign_in
-
-    ## PARA TESTE --> André
     get "/usuarios/list", UsuariosController, :show_list
   end
 
@@ -57,6 +55,7 @@ defmodule GoreviewapiWeb.Router do
     # ENVIOS
     post "/envios", EnviosController, :create
     put "/envios", EnviosController, :update
+    get "/envios/list", DesafiosController, :show_list
 
     # REVISORES
     put "/revisores", RevisoresController, :update
