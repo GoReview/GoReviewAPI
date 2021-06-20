@@ -8,16 +8,16 @@ defmodule GoreviewapiWeb.ComentariosController do
   action_fallback FallbackController
 
   def create(conn, params) do
-    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
-    {:ok, %Comentario{} = comentario} <- Goreviewapi.create_comentario(params) do
-    conn
-    |> put_status(:created)
-    |> render("create.json", comentario: comentario)
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
+         {:ok, %Comentario{} = comentario} <- Goreviewapi.create_comentario(params) do
+      conn
+      |> put_status(:created)
+      |> render("create.json", comentario: comentario)
     end
   end
 
   def update(conn, params) do
-    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
          {:ok, %Comentario{} = comentario} <- Goreviewapi.update_comentario(params) do
       conn
       |> put_status(:ok)

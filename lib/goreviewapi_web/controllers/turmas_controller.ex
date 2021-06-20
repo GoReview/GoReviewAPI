@@ -8,7 +8,7 @@ defmodule GoreviewapiWeb.TurmasController do
   action_fallback FallbackController
 
   def create(conn, params) do
-    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
          {:ok, %Turma{} = turma} <- Goreviewapi.create_turma(params) do
       conn
       |> put_status(:created)
@@ -41,7 +41,7 @@ defmodule GoreviewapiWeb.TurmasController do
   end
 
   def show_list(conn, _params) do
-    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
          {:ok, turma} <- Goreviewapi.get_turma() do
       conn
       |> put_status(:ok)
@@ -50,7 +50,7 @@ defmodule GoreviewapiWeb.TurmasController do
   end
 
   def update(conn, params) do
-    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
          {:ok, %Turma{} = turma} <- Goreviewapi.update_turma(params) do
       conn
       |> put_status(:ok)

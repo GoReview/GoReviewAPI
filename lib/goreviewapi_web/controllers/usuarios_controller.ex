@@ -66,7 +66,7 @@ defmodule GoreviewapiWeb.UsuariosController do
     end
   end
 
-  def reset(conn, %{"email" => email} = params) do
+  def reset(conn, params) do
     with {:ok, %Usuario{id: id, name: name, email: email}} <-
            Goreviewapi.get_user_by_email(params),
          {:ok, _usuario} <- Goreviewapi.reset_password(id, name, email) do

@@ -25,11 +25,29 @@ defmodule GoreviewapiWeb.Auth.Guardian do
     |> handle_usuario()
   end
 
-  def verify_claims(conn) do
+  def verify_teacher(conn) do
     conn
     |> atual_token()
     |> decode_and_verify()
+    |> handle_teacher()
   end
+
+  defp handle_teacher({:ok, %{"group" => "professor"} = result}), do: {:ok, result}
+
+  defp handle_teacher({:ok, _result}),
+    do: {:error, Error.build(:unauthorized, "Access allowed for professor")}
+
+  def verify_pupil(conn) do
+    conn
+    |> atual_token()
+    |> decode_and_verify()
+    |> handle_pupil()
+  end
+
+  defp handle_pupil({:ok, %{"group" => "aluno"} = result}), do: {:ok, result}
+
+  defp handle_pupil({:ok, _result}),
+    do: {:error, Error.build(:unauthorized, "Access allowed for aluno")}
 
   defp handle_usuario({:ok, %{"sub" => logged_usuario}}), do: {:ok, logged_usuario}
 
