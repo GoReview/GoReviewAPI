@@ -8,11 +8,8 @@ defmodule Goreviewapi.Envios.Create do
     |> handle_insert()
   end
 
-  defp handle_insert({:ok, %Envio{id: id, usuario_id: usuario_id}} = result) do
-    Goreviewapi.Revisores.Create.call_sorteado(%{
-      envio_id: id,
-      usuario_id: usuario_id
-    })
+  defp handle_insert({:ok, %Envio{id: id}} = result) do
+    Goreviewapi.Revisores.Create.call_sorteado(id)
     result
   end
 

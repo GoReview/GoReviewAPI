@@ -3,12 +3,14 @@ defmodule Goreviewapi.Revisores.Create do
 
   def call(params) do
     params
+    |> IO.inspect()
     |> Revisor.changeset()
     |> Repo.insert()
+    |> IO.inspect()
     |> handle_insert()
   end
 
-  def call_sorteado(%{usuario_id: usuario_id, envio_id: envio_id}) do
+def call_sorteado(%{usuario_id: usuario_id, envio_id: envio_id}) do
     # vou deixar isso aqui, mas em um caso real o melhor seria procedure
     {:ok, %{rows: revisor_ids}} = Repo.query(~s{select us.id from envios en
       left join desafios de on de.id = en.desafio_id
