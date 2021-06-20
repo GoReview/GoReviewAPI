@@ -13,7 +13,8 @@ defmodule Goreviewapi.Envio.Get do
   def get_all do
     query =
       from(envio in Envio,
-        select: [:id, :name]
+        select: [:id, :name],
+        preload: [:usuario]
       )
 
     case Repo.all(query) do

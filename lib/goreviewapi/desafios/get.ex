@@ -34,7 +34,7 @@ defmodule Goreviewapi.Desafios.Get do
         preload: [:envio]
       )
 
-    case Repo.all(query) do
+    case Repo.all(query) |> Desafio.preload_assoc() do
       [] -> {:error, Error.build(:not_found, "Empty database")}
       desafio -> {:ok, desafio}
     end

@@ -36,6 +36,7 @@ defmodule Goreviewapi.Envio do
     struct
     |> Repo.preload([:usuario, :revisor])
     |> cast(params, fields)
+    |> unique_constraint([:usuario_id_desafio_id])
     |> validate_required(fields)
     |> validate_length(:arquivo, min: 1)
     |> validate_number(:dono_nota, greater_than_or_equal_to: 0)
