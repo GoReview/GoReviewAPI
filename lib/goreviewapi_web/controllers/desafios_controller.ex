@@ -8,7 +8,7 @@ defmodule GoreviewapiWeb.DesafiosController do
   action_fallback FallbackController
 
   def create(conn, params) do
-    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
          {:ok, %Desafio{} = desafio} <- Goreviewapi.create_desafio(params) do
       conn
       |> put_status(:created)
@@ -41,7 +41,7 @@ defmodule GoreviewapiWeb.DesafiosController do
   end
 
   def show_list(conn, _params) do
-    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
          {:ok, desafio} <- Goreviewapi.get_desafio() do
       conn
       |> put_status(:ok)
@@ -50,7 +50,7 @@ defmodule GoreviewapiWeb.DesafiosController do
   end
 
   def update(conn, params) do
-    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
          {:ok, %Desafio{} = desafio} <- Goreviewapi.update_desafio(params) do
       conn
       |> put_status(:ok)

@@ -8,7 +8,7 @@ defmodule GoreviewapiWeb.RevisoresController do
   action_fallback FallbackController
 
   def update(conn, params) do
-    with {:ok, %{"group" => "professor"}} <- Guardian.verify_claims(conn),
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
          {:ok, %Revisor{} = revisor} <- Goreviewapi.update_revisor(params) do
       conn
       |> put_status(:ok)

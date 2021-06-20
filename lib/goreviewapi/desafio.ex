@@ -33,7 +33,7 @@ defmodule Goreviewapi.Desafio do
     |> changes(params, @required_params ++ [:id])
   end
 
-  def preload_assoc(struct), do: struct |> Repo.preload([envio: [:usuario, :revisor]])
+  def preload_assoc(struct), do: struct |> Repo.preload(envio: [:usuario, :revisor])
 
   defp changes(struct, params, fields) do
     struct
