@@ -3,12 +3,14 @@ defmodule Goreviewapi.Revisores.Create do
 
   def call(params) do
     params
+    |> IO.inspect()
     |> Revisor.changeset()
     |> Repo.insert()
+    |> IO.inspect()
     |> handle_insert()
   end
 
-  def call_sorteado(%{usuario_id: usuario_id, envio_id: envio_id}) do
+  def call_sorteado(envio_id) do
     #vou deixar isso aqui, mas em um caso real o melhor seria procedure
     {:ok, %{rows: revisor_ids}} = Repo.query(
       ~s{select us.id from envios en
@@ -18,11 +20,11 @@ defmodule Goreviewapi.Revisores.Create do
       inner join usuarios us on ut.usuario_id = us.id and us.id <> en.usuario_id
       where en.id = '#{envio_id}'}
     )
-    revisor_id = Enum.random(revisor_ids)
+    [revisor_id] = Enum.random(revisor_ids)
+    {:ok ,revisor_uuid} = Ecto.UUID.cast(revisor_id)
 
     call(%{
-      revisor_id: revisor_id,
-      usuario_id: usuario_id,
+      usuario_id: revisor_uuid,
       envio_id: envio_id
     })
   end

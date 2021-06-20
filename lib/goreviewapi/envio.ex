@@ -9,7 +9,7 @@ defmodule Goreviewapi.Envio do
 
   @required_params [:arquivo, :desafio_id, :usuario_id]
 
-  @derive {Jason.Encoder, only: @required_params ++ [:id, :usuario, :revisor]}
+  @derive {Jason.Encoder, only: @required_params ++ [:id, :dono_nota, :usuario, :revisor]}
 
   schema "envios" do
     field :arquivo, :string
