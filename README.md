@@ -1,25 +1,23 @@
-# Goreviewapi
+<h1 align="center">
+  GoReview
+</h1>
 
-[![Elixir CI](https://github.com/GoReview/GoReviewAPI/actions/workflows/elixir.yml/badge.svg)](https://github.com/GoReview/GoReviewAPI/actions/workflows/elixir.yml)
+<h3 align="center">
+  Elixir/Phoenix API for Code/Station Hackathon. Powered by RocketSeat
+</h3>
 
-Deploy automatizado
+<p align="center">Sua plataforma para correções em grupo</p>
 
-Nossa API:
-http://goreviewapp.gigalixir.com/api
+<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/GoReview/GoReviewAPI?color=ff69b4&logo=elixir">
 
-Documentação:
-https://documenter.getpostman.com/view/15643514/TzeWFT1o
+  <a href="https://github.com/GoReview/GoReviewAPI/actions/workflows/elixir.yml" target="_blank" rel="noopener noreferrer">
+    <img alt="elixir ci" src="https://github.com/GoReview/GoReviewAPI/actions/workflows/elixir.yml/badge.svg?branch=main">
+  </a>
+</p>
 
-* Tabelas usuarios e turmas criadas
-* CRUD usuarios
-* CRUD turmas
+<hr>
 
-<<<<<<< HEAD
-=======
-16/6
+### GoReview API Documentation
 
->>>>>>> c3c33e2018780ff0b97960ee8ce65aba43b2b555
-Rotas Autenticadas
-Para cadastro de usuarios
-Endpoints na Documentação:
-
+[![postman](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzeWFT1o)
