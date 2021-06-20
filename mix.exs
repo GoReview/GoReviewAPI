@@ -20,7 +20,7 @@ defmodule Goreviewapi.MixProject do
   def application do
     [
       mod: {Goreviewapi.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :bamboo, :bamboo_smtp]
     ]
   end
 
@@ -44,8 +44,11 @@ defmodule Goreviewapi.MixProject do
       {:jason, "~> 1.0"},
       {:guardian, "~> 2.0"},
       {:cors_plug, "~> 2.0"},
+      {:bamboo, "~> 2.1.0"},
+      {:bamboo_smtp, "~> 4.0.1"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:plug_cowboy, "~> 2.0"},
+      {:secure_random, "~> 0.5"},
       {:pbkdf2_elixir, "~> 1.4"}
     ]
   end

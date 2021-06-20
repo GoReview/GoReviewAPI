@@ -10,6 +10,7 @@ defmodule Goreviewapi do
   defdelegate get_users, to: UserGet, as: :get_all
   defdelegate delete_user(id), to: UserDelete, as: :call
   defdelegate update_user(params), to: UserUpdate, as: :call
+  defdelegate reset_password(id, name, email), to: UserUpdate, as: :reset_pass
 
   alias Goreviewapi.Turmas.Create, as: TurmaCreate
   alias Goreviewapi.Turmas.Update, as: TurmaUpdate

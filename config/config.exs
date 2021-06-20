@@ -13,9 +13,25 @@ config :goreviewapi,
 config :goreviewapi, Goreviewapi.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
-  
+
 config :cors_plug,
   send_preflight_response?: true
+
+config :goreviewapi, Goreviewapi.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  # server: "smtp.mailtrap.io",
+  # hostname: "smtp.mailtrap.io",
+  server: "smtp.gmail.com",
+  hostname: "smtp.gmail.com",
+  port: 465,
+  username: Application.get_env(:goreviewapi, :smtp_username) || System.get_env("SMTP_USERNAME"),
+  password: Application.get_env(:goreviewapi, :smtp_password) || System.get_env("SMTP_PASSWORD"),
+  tls: :never,
+  allowed_tls_versions: ["tlsv1", "tlsv1.1", "tlsv1.2"],
+  ssl: true,
+  retries: 1,
+  no_mx_lookups: false,
+  auth: :if_available
 
 config :goreviewapi, GoreviewapiWeb.Auth.Guardian,
   issuer: "goreviewapi",

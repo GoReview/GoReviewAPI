@@ -1,5 +1,5 @@
 defmodule Goreviewapi.Usuarios.Update do
-  alias Goreviewapi.{Error, Usuario, Repo}
+  alias Goreviewapi.{Email, Error, Usuario, Repo}
 
   def call(%{"id" => id} = params) do
     case Repo.get(Usuario, id) do
@@ -13,6 +13,19 @@ defmodule Goreviewapi.Usuarios.Update do
     |> Usuario.changeset(params)
     |> Repo.update()
     |> handle_update()
+  end
+
+  def reset_pass(id, name, email) do
+    pass = SecureRandom.urlsafe_base64()
+
+    params = %{
+      "password" => pass
+    }
+
+    Email.send_reset_email(name, email, pass)
+
+    Repo.get(Usuario, id)
+    |> do_update(params)
   end
 
   defp handle_update({:ok, %Usuario{}} = result), do: result
