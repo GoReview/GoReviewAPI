@@ -25,4 +25,13 @@ defmodule GoreviewapiWeb.EnviosController do
       |> render("envio_update.json", envio: envio)
     end
   end
+
+  def show_list(conn, _params) do
+    with {:ok, %{"group" => "professor"}} <- Guardian.verify_teacher(conn),
+         {:ok, envio} <- Goreviewapi.get_envio() do
+      conn
+      |> put_status(:ok)
+      |> render("envio.json", envio: envio)
+    end
+  end
 end
